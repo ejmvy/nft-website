@@ -46,6 +46,7 @@ const Ball = styled.div`
 const DrawSvg = () => {
 
   const ref = useRef(null);
+  const BallRef = useRef(null);
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -62,8 +63,6 @@ const DrawSvg = () => {
     // hide svg before scrolling start
     svg.style.strokeDashoffset = length;
 
-    console.log(length)
-
     let t1 = gsap.timeline({
       scrollTrigger: {
         trigger: element,
@@ -74,18 +73,26 @@ const DrawSvg = () => {
 
           // also rever the drawing when scrolling up
           svg.style.strokeDashoffset = length - draw;
+        },
+        onToggle: self => {
+          if (self.isActive) {
+            BallRef.current.style.display = 'none';
+          } else {
+            BallRef.current.style.display = 'inline-block';
+
+          }
         }
       }
     })
 
     return () => {
-
+      if (t1) t1.kill();
     };
   }, [])
 
   return (
     <>
-      <Ball />
+      <Ball ref={BallRef} />
       <VectorContainer ref={ref}>
         <Vector />
       </VectorContainer>
