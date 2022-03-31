@@ -38,6 +38,73 @@ const SvgContainer = styled.div`
   align-items: center;
 `
 
+const Items = styled.ul`
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: lightblue;
+
+  &>*:nth-of-type(2n + 1) {
+    justify-content: start;
+  }
+
+  &>*:nth-of-type(2n) {
+    justify-content: end;
+  }
+`
+const Item = styled.li`
+  width: 100%;
+  height: 100%;
+  display: flex;
+`
+
+const ItemContainer = styled.div`
+  width: 40%;
+  height: fit-content;
+  padding: 1rem;
+  border: 3px solid ${props => props.theme.text};
+`
+
+const Box = styled.p`
+  height: fit-content;
+  background: ${props => props.theme.carouselColor};
+  color: ${props => props.theme.text};
+  padding: 1rem;
+  position: relative;
+  border: 1px solid ${props => props.theme.text};
+`
+
+const SubTitle = styled.span`
+  display: block;
+  font-size: ${props => props.theme.fontxl};
+  text-transform: capitalize;
+  color: ${props => props.theme.text};
+`
+const Text = styled.span`
+  display: block;
+  font-size: ${props => props.theme.fontsm};
+  text-transform: capitalize;
+  color: ${props => props.theme.text};
+  font-weight: 400;
+  margin: 0.5rem 0;
+  `
+
+const RoadMapItem = ({ title, subText }) => {
+  return (
+    <Item>
+      <ItemContainer>
+        <Box>
+          <SubTitle>{title}</SubTitle>
+          <Text>{subText}</Text>
+        </Box>
+      </ItemContainer>
+    </Item>
+  )
+}
 const Roadmap = () => {
   return (
     <Section>
@@ -47,6 +114,14 @@ const Roadmap = () => {
         <SvgContainer>
           <DrawSvg />
         </SvgContainer>
+        <Items>
+          <Item>&nbsp;</Item>
+          <RoadMapItem title='This is a title' subText='this is subtext' />
+          <RoadMapItem title='This is a title' subText='this is subtext' />
+          <RoadMapItem title='This is a title' subText='this is subtext' />
+          <RoadMapItem title='This is a title' subText='this is subtext' />
+          <RoadMapItem title='This is a title' subText='this is subtext' />
+        </Items>
       </Container>
     </Section>
   )
