@@ -58,7 +58,7 @@ const Navigation = () => {
           <MenuItem>Team</MenuItem>
           <MenuItem>Faq</MenuItem>
         </Menu>
-        <Button text='Connent Wallet' link='https://google.com' />
+        <Button text='Connect Wallet' link='https://google.com' />
       </NavBar>
     </Section>
   )
